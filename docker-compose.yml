@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    env_file:
+      - .env
+    ports:
+      - "54321:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-ppostgres"]
+      timeout: 3s
+      retries: 30
+
